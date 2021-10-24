@@ -28,7 +28,7 @@
   <!-- carousel -->
 
   <!-- overlay -->
-<div class="overlay">
+<div class="overlay2">
 	<div class="row prof">
         <div class="card profilecard">
             <div class="image">
@@ -63,7 +63,7 @@
 </div>
 <!-- overlay -->
 
-    <div class="container">
+    <div class="container" style="margin-top: 10px;">
         <div class="row">
           {% for image in images %}
           <div class="card" style="width: 25rem;height: 300px;margin: 10px;padding: 5px;">
@@ -88,8 +88,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            
-        <form action="" method="POST"
+   <!-- form -->
+        <form action="{% url 'update.profile' %}" method="POST"
             enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group mb-3">
@@ -128,7 +128,7 @@
           <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
     </form>
-
+<!-- form  -->
       </div>
     </div>
   </div>
