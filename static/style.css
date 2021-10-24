@@ -27,7 +27,7 @@
     height: 400px;
     background-color: rgba(0, 0, 0, 0.37);
     position: absolute;
-    top: 25%;
+    top: 15%;
     left: 28%;
   }
 .infom{
@@ -45,7 +45,8 @@
 {
     margin-top: 70px;
     margin-bottom: 70px;
-    align-items: center;
+    margin-left: 80px;
+    
 }
 .counter-count
 {
@@ -65,5 +66,4 @@
 .designmain{
     display: flex;
     justify-content: space-evenly;
-    margin-left: 60px;
 }
