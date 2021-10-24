@@ -1,14 +1,42 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
+<!-- carousel -->
+
+<div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static '/img/1.jpg' %}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static '/img/2.jpg' %}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static '/img/3.jpg' %}" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!-- carousel -->
+
+  <!-- overlay -->
+<div class="overlay">
 	<div class="row prof">
         <div class="card profilecard">
             <div class="image">
             </div>
             {% if profile.profile_photo %}
-            <img src="{{profile.profile_photo.url}}" alt="" class="card-img-top profp">
+            <img src="{{profile.profile_photo.url}}" alt="" class="card-img-top profp avatar-md avatar rounded-circle" >
             {%else%}
-            <img src="{% static 'img/prof.jpg' %}" class="card-img-top profp" alt="...">
+            <img src="{% static 'img/1.jpg' %}" class="card-img-top profp avatar-md avatar rounded-circle"  alt="...">
             {% endif %}
             <div class="card-body text-center">
                 <div>
@@ -32,6 +60,8 @@
             </div>
           </div>
 	</div>
+</div>
+<!-- overlay -->
 
     <div class="container">
         <div class="row">
@@ -58,7 +88,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <form action="{% url 'update.profile' %}" method="POST"
+            
+        <form action="" method="POST"
             enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group mb-3">
@@ -110,7 +141,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <form action="{% url 'save.image' %}" method="post"
+        <form action="" method="post"
             enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
@@ -138,6 +169,5 @@
       </div>
     </div>
   </div>
-
 
 {% endblock %}
