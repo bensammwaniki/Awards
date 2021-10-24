@@ -20,5 +20,11 @@
     line-height: 50px;
 }
 .slide{
-    
+
 }
+.infom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
