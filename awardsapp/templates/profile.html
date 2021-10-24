@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	<div class="row prof">
+        <div class="card profilecard">
+            <div class="image">
+            </div>
+            {% if profile.profile_photo %}
+            <img src="{{profile.profile_photo.url}}" alt="" class="card-img-top profp">
+            {%else%}
+            <img src="{% static 'img/prof.jpg' %}" class="card-img-top profp" alt="...">
+            {% endif %}
+            <div class="card-body text-center">
+                <div>
+                    <h4 class="card-text">
+                        {{ user.last_name }} {{ user.first_name }}
+                    </h4>
+                </div>
+
+                <div>
+                <p class="card-text">
+                    {% if profile.bio %}
+                    {{ profile.bio }}
+                    {% else %}
+                    <span class="text-danger">  Some quick example text to build on the card title and make up the bulk of the card's content.</span>
+                    {% endif %}
+                </p>
+                <a type="button" class="btn btn-warning" aria-current="page" data-bs-toggle="modal" data-bs-target="#exampleModal">update profile</a>
+                <a type="button" class="btn btn-outline-success" aria-current="page" data-bs-toggle="modal" data-bs-target="#post">post</a>
+
+                </div> 
+            </div>
+          </div>
+	</div>
+
+    <div class="container">
+        <div class="row">
+          {% for image in images %}
+          <div class="card" style="width: 25rem;height: 300px;margin: 10px;padding: 5px;">
+              <img src="{{ image.image.url }}" class="card-img-top" alt="..." style="object-fit: cover;height: 260px;">
+          </div>
+          {% empty %}
+          <div class="card" style="width: 18rem;height: 300px; margin: 10px;">
+              <img src="{{profile.profile_photo.url}}" alt="" class="card-img-top">
+              <div class="card-body">
+              </div>
+          </div>
+          {% endfor %}
+      
+        </div>
+      </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">update profile </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form action="{% url 'update.profile' %}" method="POST"
+            enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group mb-3">
+                <label for="name">First Name</label>
+                <input type="text" class="form-control" id="first_name"
+                    name="first_name" value="{{ user.first_name }}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="name">Last Name</label>
+                <input type="text" class="form-control" id="last_name"
+                    name="last_name" value="{{ user.last_name }}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username"
+                    name="username" value="{{ user.username }}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email"
+                    value="{{ user.email}}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="bio">Bio</label>
+                <textarea name="bio" id="bio" cols="30" rows="10"
+                    class="form-control">{{ profile.bio }}</textarea>
+            </div>
+            <div class="form-group mb-3">
+                <label for="profile_pic">Profile Picture</label>
+                <input type="file" class="form-control" id="profile_pic"
+                    name="profile_pic" required>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+    </form>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="post" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">update profile </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form action="{% url 'save.image' %}" method="post"
+            enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="image_name">Name</label>
+                <input type="text" class="form-control" value="" name="image_name"
+                    required>
+            </div>
+            <input type="hidden" name="user_id" value="{{ user.id }}">
+            <div class="form-group mt-3">
+                <label for="exampleFormControlTextarea1">Caption</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                    name="image_caption" required></textarea>
+            </div>
+            <div class="form-group mt-3">
+                <label for="exampleFormControlFile1">Upload Photo</label>
+                <input type="file" class="form-control" id="exampleFormControlFile1"
+                    name="image_file" required>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-warning">Upload</button>
+        </form>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

@@ -5,4 +5,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("", views.home),
+    path("profile/", views.profile),
+
 ]
