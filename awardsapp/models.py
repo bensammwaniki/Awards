@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 # Create your models here.
 
 # image model 
@@ -10,7 +11,7 @@ class Post(models.Model):
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='images')
 
-    # image = CloudinaryField('image')
+    screenshort = CloudinaryField('image')
     project_name = models.CharField(max_length=50)
     project_desc = models.TextField()
     posted_date = models.DateTimeField(auto_now_add=True)
