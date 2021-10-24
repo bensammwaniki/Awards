@@ -1,0 +1,24 @@
+.carousel-item{
+    height: 500px;
+    object-fit: cover;
+    object-position: bottom;
+}
+.carousel{
+    margin-top: 20px;
+}
+.bdge{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+.inf{
+    display: flex;
+    justify-content: 10px;
+    text-align: center;
+    margin: 5px;
+    vertical-align: middle;
+    line-height: 50px;
+}
+.slide{
+    
+}
