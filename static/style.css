@@ -20,11 +20,50 @@
     line-height: 50px;
 }
 .slide{
-
+        position: relative;
 }
+.overlay{
+    width: 800px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.37);
+    position: absolute;
+    top: 25%;
+    left: 28%;
+  }
 .infom{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+.counter
+{
+    background-color: #eaecf0;
+    text-align: center;
+}
+.employees,.customer,.design,.order
+{
+    margin-top: 70px;
+    margin-bottom: 70px;
+    align-items: center;
+}
+.counter-count
+{
+    font-size: 18px;
+    background-color: #e7e3005e;
+    border-radius: 50%;
+    position: relative;
+    color: #ffffff;
+    text-align: center;
+    line-height: 92px;
+    width: 92px;
+    height: 92px;
+    border: 2px solid #e7e300;
+    display: inline-block;
+    align-items: center;
+}
+.designmain{
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 60px;
+}
