@@ -68,12 +68,33 @@
     width: 92px;
     height: 92px;
     border: 2px solid #e7e300;
-    display: inline-block;
     align-items: center;
 }
+.counter-count2
+{
+    font-size: 18px;
+    background-color: #e7e3005e;
+    border-radius: 50%;
+    position: relative;
+    color: #000000;
+    text-align: center;
+    line-height: 50px;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #e7e300;
+    align-items: center;
+}
+
 .designmain{
     display: flex;
     justify-content: space-evenly;
+}
+.designmain2{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    width: fit-content;
+    margin-left: 50px;
 }
 .prof{
     width: 100%;

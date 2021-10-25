@@ -35,6 +35,11 @@ class Post(models.Model):
         project = cls.objects.get(id=id)
         return project
 
+    def update_project(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+        self.save()    
+
     @classmethod
   # search images using image name
     def search_project(cls, search_term):

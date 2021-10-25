@@ -90,24 +90,25 @@ def rating(request, id):
 
         project = Post.objects.get(id=id)
         current_user = request.user
-        design_rate=request.POST["design"]
-        usability_rate=request.POST["usability"]
-        content_rate=request.POST["content"]
+        design=request.POST["design"]
+        userbility=request.POST["userbility"]
+        content=request.POST["content"]
 
         Rating.objects.create(
-            project=project,
+            post=project,
             user=current_user,
-            design_rate=design_rate,
-            usability_rate=usability_rate,
-            content_rate=content_rate,
-            avg_rate=round((float(design_rate)+float(usability_rate)+float(content_rate))/3,2),
+            design=design,
+            userbility=userbility,
+            content=content,
+            average_rate=round((float(design)+float(userbility)+float(content))/3,2),
         )
 
-        average_rating= (int(design_rate)+int(usability_rate)+int(content_rate))/3
-        project.rate=average_rating
+        average_rate= (int(design)+int(userbility)+int(content))/3
+        project.rate=average_rate
         project.update_project()
+        ratings = Rating.objects.filter(post=project)
 
-        return render(request, "display.html", {"success": "Rated Successfully", "project": project, "rating": Rating.objects.filter(project=project)})
+        return render(request, "display.html", {"success": "Rated Successfully", "project": project, "ratings":ratings })
     else:
         project = Post.objects.get(id=id)
         return render(request, "display.html", {"project": project})
