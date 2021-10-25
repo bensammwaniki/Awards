@@ -1,10 +1,9 @@
-# Newinsta
+# Awaards
 
-#### Created By Bensam on 17-10-2021
+#### Created By Bensam on 23-10-2021
 
 ## Description
-
-Newinsta is an Instagram web application to showcase pictures and designs. users can create accounts and can be allowed to comment on other users' images. Users are also allowed to search images by name. This application allows users to like pictures.
+This is an application that allows its user to save post data/webpages and their links and allow other users to rate them. The user can rate them depending on several areas eg design,usability and content.
 
 ## Setup Requirements
 
@@ -67,7 +66,7 @@ The following languages have been used on this project:
 
 ## Setup/Installation Requirements
 
-- Live link to view the project <a target="_blank" href="https://beninstapp.herokuapp.com/">Newinsta</a>
+- Live link to view the project <a target="_blank" href="https://bensamawards.herokuapp.com/">Awaards</a>
 
 ## Screenshot
 
