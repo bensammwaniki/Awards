@@ -26,7 +26,7 @@ class Post(models.Model):
     def save_image(self):
         self.save()
 
-    def delete_image(self):
+    def delete_project(self):
         self.delete()
 
     #  get by id

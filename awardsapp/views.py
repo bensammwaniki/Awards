@@ -78,6 +78,12 @@ def postimage(request):
         return render(request, 'index.html', {'danger': 'posting Failed'})
 
 
+@login_required(login_url="/accounts/login/")
+def delete_project(request, id):
+    project = Post.objects.get(id=id)
+    project.delete_project()
+    return redirect("/profile", {"success": "you have Successfully deleted the project"})
+
 @login_required(login_url='/accounts/login/')
 def show_image(request, id):
     project = Post.objects.get(id=id)

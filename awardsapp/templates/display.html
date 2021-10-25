@@ -8,6 +8,7 @@
           <img src="{{project.screenshort.url}}" class="card-img-top" alt="..." style="object-fit: cover;object-position: 10% 0%; height: 400px;">
       <div class="card-body">
         <h5 class="card-title">{{ project.project_name }}</h5>
+        <a class="btn btn-danger" href="{% url 'delete.project' project.id %}" >DELETE</a>
         <p class="card-text">
         </p>
         {% for rating in ratings %}
@@ -15,38 +16,40 @@
             <div class="col">
                 <div class="customer1">
                     <p class="counter-count2" style="background-color: #05000000;border: 2px solid #e70000;" >{{ rating.design }}</p>
+                    <span class="badge bg-danger">Design</span>
                 </div>
             </div>
     
             <div class="col">
                 <div class="design1">
                     <p class="counter-count2"  style="background-color: #05000000;border: 2px solid #0c4900;"  >{{ rating.userbility }}</p>
+                    <span class="badge bg-success">Usability</span>
                 </div>
             </div>
     
             <div class="col">
                 <div class="order1">
                     <p class="counter-count2"  style="background-color: #05000000;border: 2px solid #ffd000;" >{{ rating.content }}</p>
-
+                    <span class="badge bg-warning">Content</span>
                 </div>
             </div>
 
             <div class="col">
                 <div class="order1">
                     <p class="counter-count2"  style="background-color: #05000000;border: 2px solid #00fff2;" >{{ rating.average_rate }}</p>
-
+                    <span class="badge bg-info">Average_rate</span>
                 </div>
             </div>
 
             <div class="col">
                 <div class="order1">
-                    <span class="badge bg-warning text-dark" style="object-position: bottom;">{{ rating.date }}</span>
+                    <span class="badge bg-warning text-dark" style="margin-top: 70px;">{{ rating.date }}</span>
                 </div>
             </div>
 
             <div class="col">
                 <div class="order1">
-                    <span class="badge bg-info text-dark" style="object-position: bottom;">Rated by {{ rating.user.username }}</span>
+                    <span class="badge bg-info text-dark" style="margin-top: 70px;">Rated by {{ rating.user.username }}</span>
                 </div>
             </div>
 
@@ -71,7 +74,7 @@
             <label for="Design">Content</label>
             <input type="number" class="form-control" name="content" min="0" max="10" value="0">
         </div>
-        <button type="submit" class="btn btn-warning">submit</button>
+        <button type="submit" class="btn btn-warning">view more ratings</button>
 
     </form>
     </div>
