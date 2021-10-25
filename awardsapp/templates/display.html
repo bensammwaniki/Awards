@@ -4,35 +4,35 @@
 
 <div class="container">
     <div class="row">
-      <div class="card" style="width: 35rem;height: fit-content; margin:auto;margin-top: 20px; padding: 5px;">
-          <img src="{{ project.screenshort.url }}" class="card-img-top" alt="..." style="object-fit: cover;height: 260px;">
+      <div class="card" style="width: 100%;height: fit-content; margin:auto;margin-top: 20px; padding: 5px;">
+          <img src="{{project.screenshort.url}}" class="card-img-top" alt="..." style="object-fit: cover;object-position: 10% 0%; height: 400px;">
       <div class="card-body">
         <h5 class="card-title">{{ project.project_name }}</h5>
         <p class="card-text">
-            <!-- {{image.image_caption }} -->
         </p>
       </div>
-    </div>
-    </div>
 
-<div class="row text-center">
-<h1>Related images</h1>
-</div>
 
-<!--    
-    <div class="row">
-        {% for image in images %}
-        <div class="card" style="width: 25rem;height: fit-content;margin: 10px;padding: 5px;">
-            <img src="{{ image.image.url }}" class="card-img-top" alt="..." style="object-fit: cover;height: 260px;">
-        <div class="card-body">
-          <h5 class="card-title">{{ image.image_name }}</h5>
-          <p class="card-text">
-              {{image.image_caption }}
-          </p>
+      <form action="" method="post">
+        <div class="mb-3">
+            <label for="Design">Design</label>
+            <input type="number" class="form-control" name="design" min="0" max="10" value="0">
         </div>
+
+        <div class="mb-3">
+            <label for="Design">Userbility</label>
+            <input type="number" class="form-control" name="userbility" min="0" max="10" value="0">
+        </div>
+
+        <div class="mb-3">
+            <label for="Design">Content</label>
+            <input type="number" class="form-control" name="content" min="0" max="10" value="0">
+        </div>
+        <button type="submit" class="btn btn-warning">submit</button>
+
+    </form>
     </div>
-        {% endfor %}
-      </div> -->
+    </div>
 
   </div>
 

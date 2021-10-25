@@ -82,4 +82,4 @@ def show_image(request, id):
     project = Post.objects.get(id=id)
     related_projects= Post.objects.filter(
                     user_id=project.user_id).order_by('-posted_date')
-    return render(request, 'display.html', {'image': project, 'images': related_projects,})
+    return render(request, 'display.html', {'project': project, 'related_projects': related_projects,})
