@@ -86,15 +86,28 @@ def show_image(request, id):
 
 
 def rating(request, id):
-    if request.method == 'POST':
-        project = Post.objects.get(id=id)
-        design = request.POST['project_name']
-        userbility = request.POST['project_name']
-        content = request.POST['project_name']
+    if request.method == "POST":
 
-        rate = Rating(design=design, userbility=userbility, content=content,
-                      project=project, user_id=request.POST['user_id'])
-        rate.save_image()
-        return redirect('/', {'success': 'Successfully posted'})
+        project = Post.objects.get(id=id)
+        current_user = request.user
+        design_rate=request.POST["design"]
+        usability_rate=request.POST["usability"]
+        content_rate=request.POST["content"]
+
+        Rating.objects.create(
+            project=project,
+            user=current_user,
+            design_rate=design_rate,
+            usability_rate=usability_rate,
+            content_rate=content_rate,
+            avg_rate=round((float(design_rate)+float(usability_rate)+float(content_rate))/3,2),
+        )
+
+        average_rating= (int(design_rate)+int(usability_rate)+int(content_rate))/3
+        project.rate=average_rating
+        project.update_project()
+
+        return render(request, "display.html", {"success": "Rated Successfully", "project": project, "rating": Rating.objects.filter(project=project)})
     else:
-        return render(request, 'index.html', {'danger': 'posting Failed'})
+        project = Post.objects.get(id=id)
+        return render(request, "display.html", {"project": project})

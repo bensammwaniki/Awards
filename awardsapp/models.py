@@ -82,6 +82,8 @@ class Rating(models.Model):
     userbility = models.IntegerField(default=0)
     content = models.IntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    average_rate = models.IntegerField(default=0, blank=True, null=True)
+    date = models.DateTimeField(auto_now_add=True, null=True)
 
 
     def update(self):
@@ -89,3 +91,11 @@ class Rating(models.Model):
 
     def save_ratings(self):
         self.save()
+        
+    @classmethod
+    def filter_by_id(cls, id):
+        rating = Rating.objects.filter(id=id).first()
+        return rating
+
+    def __str__(self):
+        return self.user.username
