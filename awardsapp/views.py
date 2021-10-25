@@ -83,3 +83,18 @@ def show_image(request, id):
     related_projects= Post.objects.filter(
                     user_id=project.user_id).order_by('-posted_date')
     return render(request, 'display.html', {'project': project, 'related_projects': related_projects,})
+
+
+def rating(request, id):
+    if request.method == 'POST':
+        project = Post.objects.get(id=id)
+        design = request.POST['project_name']
+        userbility = request.POST['project_name']
+        content = request.POST['project_name']
+
+        rate = Rating(design=design, userbility=userbility, content=content,
+                      project=project, user_id=request.POST['user_id'])
+        rate.save_image()
+        return redirect('/', {'success': 'Successfully posted'})
+    else:
+        return render(request, 'index.html', {'danger': 'posting Failed'})

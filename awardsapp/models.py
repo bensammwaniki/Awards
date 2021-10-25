@@ -73,3 +73,19 @@ class Profile(models.Model):
     def get_profile_by_user(cls, user):
         profile = cls.objects.filter(user=user)
         return profile       
+
+
+
+class Rating(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    design = models.IntegerField(default=0)
+    userbility = models.IntegerField(default=0)
+    content = models.IntegerField(default=0)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+    def update(self):
+        self.save()
+
+    def save_ratings(self):
+        self.save()
