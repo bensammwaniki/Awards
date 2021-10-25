@@ -80,7 +80,6 @@ The following languages have been used on this project:
 ## Known Bugs
 
 no known bugs
-the share might not work still work in progress
 
 ## Support and contact details
 - Email: bensammwaniki@gmail.com
