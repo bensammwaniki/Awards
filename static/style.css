@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai&family=Zilla+Slab:wght@300&display=swap');
+body{
+    font-family: 'Zilla Slab', serif;
+}
+
+h1,nav{
+    font-family: 'Hind Madurai', sans-serif;
+
+}
 .carousel-item{
     height: 500px;
     object-fit: cover;
