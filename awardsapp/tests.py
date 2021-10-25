@@ -1,6 +1,4 @@
 from django.test import TestCase
-
-from django.test import TestCase
 from .models import *
 
 # test image class
@@ -14,17 +12,17 @@ class PostTestCase(TestCase):
             first_name='bensam',
         )
         Post.objects.create(
+            user=user,
             project_name='test_image',
             screenshort='https://doographics.com/assets/dg/images/cooking-youtube-thumbnail/cooking',
             project_url='test image url',
-            profile=user.id,
             rate = 10,
             posted_date= "20"
         )
 
-    def test_image_name(self):
-        image = Post.objects.get(image_name='test_image')
-        self.assertEqual(image.image_name, 'test_image')
+    def test_project_name(self):
+        project = Post.objects.get(project_name='test_image')
+        self.assertEqual(project.project_name, 'test_image')
 
 
 class ProfileTestCase(TestCase):
