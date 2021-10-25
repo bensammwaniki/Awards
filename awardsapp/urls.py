@@ -17,6 +17,4 @@ urlpatterns = [
 
     url(r'^api/project/$', views.Projects.as_view()),
     url(r'^api/profile/$', views.ProfileList.as_view()),
-
-
 ]
