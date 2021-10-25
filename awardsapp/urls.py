@@ -10,5 +10,6 @@ urlpatterns = [
     path('add/', views.postimage, name='save.project'),
     path('display/<int:id>/', views.show_image, name='display.project'),
     path('display/rate/<int:id>/', views.rating, name='rate.project'),
+    path('search/', views.search_post, name='search.post')
 
 ]

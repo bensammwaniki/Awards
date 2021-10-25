@@ -112,3 +112,17 @@ def rating(request, id):
     else:
         project = Post.objects.get(id=id)
         return render(request, "display.html", {"project": project})
+
+
+
+@login_required(login_url='/accounts/login/')
+def search_post(request):
+    if 'search' in request.GET and request.GET['search']:
+        search_term = request.GET.get('search').lower()
+        search = Post.search_project(search_term)
+        message = f'{search_term}'
+
+        return render(request, 'search.html', {'found': message, 'search': search})
+    else:
+        message = 'Not found'
+        return render(request, 'search.html', {'danger': message})       

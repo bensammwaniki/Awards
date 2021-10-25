@@ -41,10 +41,9 @@ class Post(models.Model):
         self.save()    
 
     @classmethod
-  # search images using image name
     def search_project(cls, search_term):
         project = cls.objects.filter(
-                    contains=search_term)
+                    project_name__icontains=search_term)
         return project    
 
     def __str__(self):
