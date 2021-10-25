@@ -17,8 +17,9 @@ class PostTestCase(TestCase):
             project_name='test_image',
             screenshort='https://doographics.com/assets/dg/images/cooking-youtube-thumbnail/cooking',
             project_url='test image url',
-            profile_id=user.id,
-            user_id=user.id
+            profile=user.id,
+            rate = 10,
+            posted_date= "20"
         )
 
     def test_image_name(self):

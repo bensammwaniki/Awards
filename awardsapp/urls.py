@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls import url
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -10,6 +11,11 @@ urlpatterns = [
     path('add/', views.postimage, name='save.project'),
     path('display/<int:id>/', views.show_image, name='display.project'),
     path('display/rate/<int:id>/', views.rating, name='rate.project'),
-    path('search/', views.search_post, name='search.post')
+    path('search/', views.search_post, name='search.post'),
+
+
+    url(r'^api/project/$', views.Projects.as_view()),
+    url(r'^api/profile/$', views.ProfileList.as_view()),
+
 
 ]
