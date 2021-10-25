@@ -23,9 +23,9 @@ def home(request):
 @login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
-    projects = Post.objects.filter(user_id=current_user.id)
+    # projects = Post.objects.filter(user_id=current_user.id).all()
     profile = Profile.objects.filter(user_id=current_user.id).first()
-    return render(request, 'profile.html', {"projects": projects, "profile": profile})
+    return render(request, 'profile.html', { "profile": profile})
 
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
