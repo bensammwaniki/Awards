@@ -101,3 +101,7 @@
     flex-direction: column;
     color: turquoise;
 }
+.carddisp{
+min-height: 250px;
+object-fit: cover;
+}

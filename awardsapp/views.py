@@ -7,7 +7,8 @@ import cloudinary.api
 
 # Create your views here.
 def home(request):
-    return render(request, 'index.html')
+    projects = Post.objects.all().order_by('-posted_date')
+    return render(request, 'index.html',{'projects': projects})
 
 
 @login_required(login_url='/accounts/login/')
@@ -56,4 +57,29 @@ def update_profile(request):
 
         return redirect('/profile', {'success': 'Updated your profile Successfully'})
     else:
-        return render(request, 'profile.html', {'failed': 'Update Failed'})    
+        return render(request, 'profile.html', {'failed': 'Update Failed'})  
+
+
+
+@login_required(login_url='/accounts/login/')
+def postimage(request):
+    if request.method == 'POST':
+        project_name = request.POST['project_name']
+        project_url = request.POST['project_url']
+        screenshort = request.FILES['screenshort']
+        screenshort = cloudinary.uploader.upload(screenshort)
+        screenshort_url = screenshort['url']
+        project = Post(project_name=project_name, project_url=project_url, screenshort=screenshort_url,
+                      profile_id=request.POST['user_id'], user_id=request.POST['user_id'])
+        project.save_image()
+        return redirect('/', {'success': 'Successfully posted'})
+    else:
+        return render(request, 'index.html', {'danger': 'posting Failed'})
+
+
+@login_required(login_url='/accounts/login/')
+def show_image(request, id):
+    project = Post.objects.get(id=id)
+    related_projects= Post.objects.filter(
+                    user_id=project.user_id).order_by('-posted_date')
+    return render(request, 'display.html', {'image': project, 'images': related_projects,})

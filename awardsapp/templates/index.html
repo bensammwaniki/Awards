@@ -67,28 +67,30 @@
   <div class="container">
       <div class='row'>
 <!-- card  -->
+
+{% for project in projects %}
         <div class="card" style="width: 24rem; margin: 10px;padding: 10px;">
-            <img src="{% static '/img/3.jpg' %}" class="card-img-top" alt="...">
+            <img src="{{ project.screenshort }}" class="card-img-top carddisp" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
+                <h5 class="card-title">{{ project.project_name }}</h5>
                 <div class="bdge">
                     <div>
-                        <span class="badge bg-success">date</span>
+                        <span class="badge bg-success">{{ project.project_name }}</span>
                     </div>
                     <div>
-                        <a href="http://" target="_blank" rel="noopener noreferrer" class="badge bg-dark">live link</a>
+                        <a href="{{ project.project_url }}" target="_blank" rel="noopener noreferrer" class="badge bg-dark">live link</a>
                     </div>
                 </div>
                 <div class="infom">
 
                     <div class="inf">
-                        <img src="{% static '/img/3.jpg' %}"
+                        <img src="{{project.user.profile.profile_photo.url}}"
                         style="width: 50px;height: 50px;"
                         alt="" class="avatar-md avatar rounded-circle">
-                        <small>  Special title treatment</small>
+                        <small>{{project.user.username}}</small>
                     </div>
                     <div>
-                        <a href="http://" type="button" class="btn btn-warning">Rate app</a>
+                        <a href="{% url 'display.project' project.id %}" type="button" class="btn btn-warning">Rate app</a>
                     </div>
                     
                 </div>
@@ -96,6 +98,7 @@
           </div>
 <!-- card  -->
 <!-- card  -->
+{% empty %}
 <div class="card" style="width: 24rem; margin: 10px;padding: 10px;">
     <img src="{% static '/img/3.jpg' %}" class="card-img-top" alt="...">
     <div class="card-body">
@@ -125,6 +128,7 @@
   </div>
 <!-- card  -->
 
+{% endfor %}          
 
       </div>
   </div>
@@ -138,24 +142,24 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <form action="" method="post"
+        <form action="{% url 'save.project' %}" method="post"
             enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
-                <label for="image_name">Name</label>
-                <input type="text" class="form-control" value="" name="image_name"
+                <label for="image_name">Project name</label>
+                <input type="text" class="form-control" value="" name="project_name"
                     required>
             </div>
             <input type="hidden" name="user_id" value="{{ user.id }}">
             <div class="form-group mt-3">
-                <label for="exampleFormControlTextarea1">url to the page</label>
+                <label for="exampleFormControlTextarea1">url</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"
-                    name="image_caption" required></textarea>
+                    name="project_url" required></textarea>
             </div>
             <div class="form-group mt-3">
                 <label for="exampleFormControlFile1">Upload screenshot</label>
                 <input type="file" class="form-control" id="exampleFormControlFile1"
-                    name="image_file" required>
+                    name="screenshort" required>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-warning">Upload</button>

@@ -13,7 +13,6 @@ class Post(models.Model):
 
     screenshort = CloudinaryField('image')
     project_name = models.CharField(max_length=50)
-    project_desc = models.TextField()
     project_url = models.TextField()
     posted_date = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(User, on_delete=models.CASCADE)
