@@ -5,6 +5,15 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
+
+from django.http import JsonResponse
+from rest_framework import status
+from django.http import Http404
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from awardsapp.serializer import ProfileSerializer,PostSerializer
+from awardsapp.permissions import IsAdminOrReadOnly
+
 # Create your views here.
 def home(request):
     projects = Post.objects.all().order_by('-posted_date')
@@ -126,3 +135,22 @@ def search_post(request):
     else:
         message = 'Not found'
         return render(request, 'search.html', {'danger': message})       
+
+
+
+# api ================================#
+
+class ProfileList(APIView): # get all profiles
+    permission_classes = (IsAdminOrReadOnly,)
+    def get(self, request, format=None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles, many=True)
+        return Response(serializers.data)
+
+
+class Post(APIView): # get all projects
+    permission_classes = (IsAdminOrReadOnly,)
+    def get(self, request, format=None):
+        all_projects = Post.objects.all()
+        serializers = PostSerializer(all_projects, many=True)
+        return Response(serializers.data)
